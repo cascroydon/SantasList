@@ -13,29 +13,18 @@ class Program
 
 	public static void Main(string[] args)
 	{
-		var santasList = new Dictionary<string, NaughtyChild>();
-		NaughtyChild Matthew;
-		NaughtyChild Oliver;
-
-		Matthew.ChildID = 1;
-		Matthew.Name = "Matthew";
-		Matthew.Age = 16;
-		Matthew.isAlwaysNaughty = true;
-
-		Oliver.ChildID = 2;
-		Oliver.Name = "Oliver";
-		Oliver.Age = 17;
-		Oliver.isAlwaysNaughty = true;
-
-		santasList.Add("Matthew", Matthew);
-		santasList.Add("Oliver", Oliver);
+		var santasList = new List<NaughtyChild>();
+        santasList.Add(new NaughtyChild { Name = "Matthew", ChildID = 1, Age = 16, isAlwaysNaughty = true });
+        santasList.Add(new NaughtyChild { Name = "Oliver", ChildID = 2, Age = 17, isAlwaysNaughty = true });
 
 		Console.WriteLine("Please enter student");
-		string SelectedChild = Console.ReadLine();
+		string nameToFind = Console.ReadLine();
 
-		Console.WriteLine("ID is                : {0}", santasList[SelectedChild].ChildID);
-		Console.WriteLine("Full name is         : {0}", santasList[SelectedChild].Name);
-		Console.WriteLine("Age is               : {0}", santasList[SelectedChild].Age);
-		Console.WriteLine("On the naughty list? : {0}", santasList[SelectedChild].isAlwaysNaughty);
+        var selectedChild = santasList.Find(x => x.Name.Contains(nameToFind));
+
+		Console.WriteLine("ID is                : {0}", selectedChild.ChildID);
+		Console.WriteLine("Full name is         : {0}", selectedChild.Name);
+		Console.WriteLine("Age is               : {0}", selectedChild.Age);
+		Console.WriteLine("On the naughty list? : {0}", selectedChild.isAlwaysNaughty);
 	}
 }
